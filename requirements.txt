@@ -1,0 +1,16 @@
+streamlit
+
+google-api-python-client
+# google-api-python-client==2.137.0
+
+google-auth
+# google-auth==2.35.0
+
+google-auth-oauthlib
+# google-auth-oauthlib==1.2.1
+
+phonenumbers
+# phonenumbers==9.0.0
+
+requests
+# requests==2.32.3
