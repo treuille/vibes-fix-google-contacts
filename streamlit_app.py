@@ -40,6 +40,7 @@ from phonenumbers import PhoneNumberFormat
 SCOPES = ["https://www.googleapis.com/auth/contacts"]
 TOKEN_ENDPOINT = "https://oauth2.googleapis.com/token"
 AUTH_ENDPOINT = "https://accounts.google.com/o/oauth2/v2/auth"
+DEFAULT_REDIRECT_URI = "https://fix-contacts.streamlit.app/"
 
 st.set_page_config(page_title="Contacts +1 Normalizer", page_icon="🇺🇸", layout="wide")
 st.title("Google Contacts – US (+1) Normalizer")
@@ -465,8 +466,11 @@ with st.sidebar:
         st.markdown("**Paste your Web Client** from Google Cloud → Credentials → OAuth 2.0 Client IDs → *Web application*.")
         client_id = st.text_input("client_id")
         client_secret = st.text_input("client_secret", type="password")
-        redirect_uri = st.text_input("Authorized redirect URI (must exactly match Cloud Console)",
-                                     placeholder="https://your-app.streamlit.app/")
+        # Default to your deployed app URL
+        redirect_uri = st.text_input(
+            "Authorized redirect URI (must exactly match Cloud Console)",
+            value=DEFAULT_REDIRECT_URI,
+        )
         if client_id and client_secret and redirect_uri:
             auth_url = start_pkce_flow(client_id, redirect_uri)
             st.link_button("Start Google sign-in", auth_url, type="primary", use_container_width=True)
